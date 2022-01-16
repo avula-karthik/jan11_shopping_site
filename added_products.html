@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background: linear-gradient(90deg, cyan, pink);
+        }
+
+        .row {
+            border: 10px solid blue;
+            margin: auto;
+            width: 83%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        p {
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container border bg-info mt-1 mb-1 parentdiv text-center">
+        <table id="table">
+            <tr><h1>Bill Counter</h1></tr>
+        </table>
+        <div>
+            <h1 id="totalsumid" class="text-center"></h1>
+        </div>
+    </div>
+
+
+    <script>
+        let totalSUM = 0;
+        let container = document.querySelector(".container");
+        let prev_data_string = localStorage.getItem("Products");
+        let parsed_arrays = JSON.parse(prev_data_string);
+        let table = document.querySelector("#table")
+        for(eachkey in parsed_arrays){
+            let tr = document.createElement("tr")
+            tr.innerHTML = `
+            <td><img src= ${parsed_arrays[eachkey]['image']} style="height:20rem;width:100%;style="display:inline-block" ></td>
+            <td><strong>Product Name : ${parsed_arrays[eachkey]['name']}</strong> </td>
+            <td><strong> Price : ${parsed_arrays[eachkey]['price']} </strong> </td>
+            `
+            let currentsumvar = Number(parsed_arrays[eachkey]['price'])
+            totalSUM += currentsumvar
+
+            table.append(tr)
+        }
+        document.getElementById("totalsumid").textContent = "Total Sum : " + totalSUM;
+
+        
+
+
+    </script>
+</body>
+
+</html>

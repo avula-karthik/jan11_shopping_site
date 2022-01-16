@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Shopping cart Application</title>
     <style>
@@ -16,16 +18,40 @@
 
         img {
             border: 1px solid;
-             width: 100%; 
+            width: 100%;
             height: 20rem;
         }
 
         img:hover {
             transform: scale(1.1);
         }
-        a:link,a:active, a:visited{
+
+        a:visited,
+        a:link,
+        a:active {
             color: white;
-            text-decoration: none;
+        }
+
+        .badge {
+            padding-left: 9px;
+            padding-right: 9px;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+        }
+
+        .label-warning[href],
+        .badge-warning[href] {
+            background-color: #c67605;
+        }
+
+        #lblCartCount {
+            font-size: 12px;
+            background: #ff0000;
+            color: #fff;
+            padding: 0 5px;
+            vertical-align: top;
+            margin-left: -10px;
         }
     </style>
 </head>
@@ -49,7 +75,11 @@
                 </h3>
             </div>
             <div class="col-lg-1 col-sm-1 bg-dark text-white text-center p-3">
-                <h3><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <h3>
+                    <a href="added_products.html">
+                        <i class="fa" style="font-size:24px">&#xf07a;</i>
+                        <span class='badge badge-warning' id='lblCartCount'>0</span>
+                    </a>
                 </h3>
             </div>
         </div>
@@ -60,11 +90,12 @@
                     <img src="tshirt.jpg" alt="Tshirt Image">
                     <div>
                         <p class="text-center" id="pname1"><strong>Sports T-Shirt</strong></p>
-                        <p class="text-center" id="pcost1"> &#8377; 640</p>
+                        <p class="text-center" id="pcost1">640</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText1()" id="buttonclick1"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" onclick="changeText('buttonclick1', 'pname1', 'pcost1')"
+                            data-name="Sports T-Shirt" data-price=640 data-image="tshirt.jpg" id="buttonclick1">
+                            <i class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -74,11 +105,12 @@
                     <img src="jeans.jpg" alt="Jeans Image">
                     <div>
                         <p class="text-center" id="pname2"><strong>Denim Jeans</strong></p>
-                        <p class="text-center" id="pcost2"> &#8377; 929</p>
+                        <p class="text-center" id="pcost2">929</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText2()" id="buttonclick2"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-name="Denim Jeans" data-price="929"
+                            data-image="jeans.jpg" onclick="changeText('buttonclick2', 'pname2', 'pcost2')"
+                            id="buttonclick2"><i class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -87,11 +119,12 @@
                     <img src="shoes.jpg" alt="Shoes Image">
                     <div>
                         <p class="text-center" id="pname3"><strong>Shoes</strong></p>
-                        <p class="text-center" id="pcost3"> &#8377; 1200</p>
+                        <p class="text-center" id="pcost3">1200</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText3()" id="buttonclick3"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-name="Shoes" data-price="1200" data-image="shoes.jpg"
+                            onclick="changeText('buttonclick3', 'pname3', 'pcost3')" id="buttonclick3"><i
+                                class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -100,11 +133,12 @@
                     <img src="watch.jpg" alt="Watch Image">
                     <div>
                         <p class="text-center" id="pname4"><strong>Watch</strong></p>
-                        <p class="text-center" id="pcost4"> &#8377; 899</p>
+                        <p class="text-center" id="pcost4">899</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText4()" id="buttonclick4"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-name="Watch" data-price="899" data-image="watch.jpg"
+                            onclick="changeText('buttonclick4', 'pname4', 'pcost4')" id="buttonclick4"><i
+                                class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -117,11 +151,12 @@
                     <img src="chair.jpg" alt="Chair Image">
                     <div>
                         <p class="text-center" id="pname5"><strong>Chair</strong></p>
-                        <p class="text-center" id="pcost5"> &#8377; 3899</p>
+                        <p class="text-center" id="pcost5">3899</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText5()" id="buttonclick5"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-price="3899" data-name="Chair" data-image="chair.jpj"
+                            onclick="changeText('buttonclick5', 'pname5', 'pcost5')" id="buttonclick5"><i
+                                class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -130,11 +165,12 @@
                     <img src="mug.jpg" alt="Mug Image">
                     <div>
                         <p class="text-center" id="pname6"><strong>Mug</strong></p>
-                        <p class="text-center" id="pcost6"> &#8377; 399</p>
+                        <p class="text-center" id="pcost6">399</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText6()" id="buttonclick6"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-name="Mug" data-price="399" data-image="mug.jpg"
+                            onclick="changeText('buttonclick6', 'pname6', 'pcost6')" id="buttonclick6"><i
+                                class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -143,11 +179,12 @@
                     <img src="fork.jpg" alt="Fork Image">
                     <div>
                         <p class="text-center" id="pname7"><strong>Fork</strong></p>
-                        <p class="text-center" id="pcost7"> &#8377; 30</p>
+                        <p class="text-center" id="pcost7">30</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText7()" id="buttonclick7"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-price="30" data-name="Fork" data-image="fork.jpg"
+                            onclick="changeText('buttonclick7', 'pname7', 'pcost7')" id="buttonclick7"><i
+                                class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -156,11 +193,12 @@
                     <img src="earphones.png" alt="earphn Image">
                     <div>
                         <p class="text-center" id="pname8"><strong>Earphones</strong></p>
-                        <p class="text-center" id="pcost8"> &#8377; 740</p>
+                        <p class="text-center" id="pcost8">740</p>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mb-3" onclick="changeText8()" id="buttonclick8"><i
-                                class='fa fa-shopping-cart'></i> Add to cart</button>
+                        <button class="btn btn-primary mb-3" data-name="Earphones" data-price="740"
+                            data-image="earphones.png" onclick="changeText('buttonclick8', 'pname8', 'pcost8')"
+                            id="buttonclick8"><i class='fa fa-shopping-cart'></i>Add to cart</button>
                     </div>
                 </article>
             </div>
@@ -173,102 +211,58 @@
 
 
     <script>
+        let counter = document.getElementById("lblCartCount");
+        let count = 0;
         let products_car = [];
-        function changeText1() {
-            let mybutton1 = document.querySelector("#buttonclick1");
-            mybutton1.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname1").textContent,
-                price: document.querySelector("#pcost1").textContent
+        function changeText(givenButton, givenName, givenCost) {
+            //givenName = document.getElementById(givenName);
+            //givenCost = document.getElementById(givenCost);
+            givenButton = document.getElementById(givenButton);
+            if (localStorage.getItem("Products")) {
+                products_car = JSON.parse(localStorage.getItem("Products"))
+                if (givenButton.textContent === "Add to cart") {
+                    let product = {
+                        name: givenButton.dataset.name,
+                        price: givenButton.dataset.price,
+                        image: givenButton.dataset.image
+                    }
+                    products_car.push(product);
+                    localStorage.setItem("Products", JSON.stringify(products_car));
+                    givenButton.textContent = "Remove from cart"
+                    count += 1;
+                    counter.textContent = count;
+                }
+                else {
+                    let newarray = [];
+                    for (let value of Object.values(products_car)) {
+                        if (value.name !== givenButton.dataset.name) {
+                            newarray.push(value);
+                        }
+                    }
+                    localStorage.setItem("Products", JSON.stringify(newarray));
+                    givenButton.textContent = "Add to cart"
+                    count -= 1;
+                    counter.textContent = count;
+                }
             }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
+            else {
+                let product = {
+                    name: givenButton.dataset.name,
+                    price: givenButton.dataset.price,
+                    image: givenButton.dataset.image
+                }
+                products_car.push(product)
+                localStorage.setItem("Products", JSON.stringify(products_car));
+                givenButton.textContent = "Remove from cart";
+                count += 1;
+                counter.textContent = count;
+
+            }
+
+
         }
 
-        function changeText2() {
-            let mybutton2 = document.querySelector("#buttonclick2");
-            mybutton2.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname2").textContent,
-                price: document.querySelector("#pcost2").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
 
-        function changeText3() {
-            let mybutton3 = document.querySelector("#buttonclick3");
-            mybutton3.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname3").textContent,
-                price: document.querySelector("#pcost3").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
-
-        function changeText4() {
-            let mybutton4 = document.querySelector("#buttonclick4");
-            mybutton4.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname4").textContent,
-                price: document.querySelector("#pcost4").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
-
-        function changeText5() {
-            let mybutton5 = document.querySelector("#buttonclick5");
-            mybutton5.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname5").textContent,
-                price: document.querySelector("#pcost5").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
-
-        function changeText6() {
-            let mybutton6 = document.querySelector("#buttonclick6");
-            mybutton6.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname6").textContent,
-                price: document.querySelector("#pcost6").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
-
-        function changeText7() {
-            let mybutton7 = document.querySelector("#buttonclick7");
-            mybutton7.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname7").textContent,
-                price: document.querySelector("#pcost7").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
-
-        function changeText8() {
-            let mybutton8 = document.querySelector("#buttonclick8");
-            mybutton8.textContent = "Remove from cart ";
-            let product_obj = {
-                name: document.querySelector("#pname8").textContent,
-                price: document.querySelector("#pcost8").textContent
-            }
-            products_car.push(product_obj);
-            let prod_json = JSON.stringify(products_car);
-            localStorage.setItem("Data", prod_json)
-        }
     </script>
 </body>
 
